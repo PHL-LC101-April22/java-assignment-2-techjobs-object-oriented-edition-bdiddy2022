@@ -3,10 +3,17 @@ package org.launchcode.techjobs.oo;
 import java.util.Objects;
 public abstract class JobField {
     public String value;
-    public static int id;
+    private final int id;
+    private static int nextId =1;
+
+    public JobField() {
+        this.id = nextId;
+        nextId++;
+    }
 
 
     public JobField(String value) {
+        this();
         this.value = value;
     }
 
@@ -38,7 +45,7 @@ public abstract class JobField {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JobField jobField = (JobField) o;
-        return ((JobField)o).getId()==jobField.getId();
+        return id==jobField.id;
     }
 
     public int getId() {
@@ -47,7 +54,7 @@ public abstract class JobField {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getValue());
+        return Objects.hash(id);
     }
 
 

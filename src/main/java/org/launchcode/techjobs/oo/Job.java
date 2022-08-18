@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Job {
 
-    public int id;
+    private final int id;
     private static int nextId = 1;
 
 
@@ -31,8 +31,6 @@ public class Job {
         this.positionType= positionType;
         this.coreCompetency= coreCompetency;
 
-        setId();
-
 
     }
 
@@ -46,13 +44,12 @@ public class Job {
 //        Job job = (Job) o;
 //        return ((Job)o).getId() == job.getId();
 //    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return getId() == job.getId() && Objects.equals(getName(), job.getName()) && Objects.equals(getEmployer(), job.getEmployer()) && Objects.equals(getLocation(), job.getLocation()) && Objects.equals(getPositionType(), job.getPositionType()) && Objects.equals(getCoreCompetency(), job.getCoreCompetency());
+        return id == job.id;
     }
 
     @Override
@@ -91,7 +88,7 @@ public class Job {
     }
 
     public void setPositionType(PositionType positionType) {
-        this.positionType.value = positionType.value;
+        positionType.value = this.positionType.value;
     }
 
     public CoreCompetency getCoreCompetency() {
@@ -106,9 +103,6 @@ public class Job {
         return this.id;
     }
 
-    public void setId(){
-        JobField.id = this.id;
-    }
 
 
     @Override
@@ -128,4 +122,6 @@ public class Job {
             return returnStatement;
         }
     }
+
+
 }

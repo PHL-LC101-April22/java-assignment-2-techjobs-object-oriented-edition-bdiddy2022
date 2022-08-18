@@ -35,7 +35,7 @@ public class PositionType extends JobField {
 //
 
 //    public int hashCode() {
-//        return Objects.hash(this.getId());
+//        return Objects.hash(.getId());
 //    }
 
 
