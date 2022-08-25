@@ -65,7 +65,9 @@ public class JobTest {
     @Test
     public void testToStringHandlesEmptyField() {
         Job jobOne = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job jobTwo = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
         assertTrue(jobOne.toString().contains("Location: Data not Available"));
+        assertTrue(jobTwo.toString()=="OOPS! This job does not seem to exist.");
     }
 
 }
