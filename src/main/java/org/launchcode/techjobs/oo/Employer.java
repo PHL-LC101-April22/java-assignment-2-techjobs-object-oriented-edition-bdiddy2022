@@ -16,13 +16,20 @@ public class Employer {
     public Employer(String value) {
         this();
         this.value = value;
+
+
+        this.hashCode();
     }
 
     // Custom toString, equals, and hashCode methods:
 
     @Override
     public String toString() {
-        return value;
+        if(value.length() > 0) {
+            return value;
+        } else{
+            return "Data not Available";
+        }
     }
 
     @Override
@@ -45,7 +52,7 @@ public class Employer {
     }
 
     public String getValue() {
-        return value;
+        return value.toString();
     }
 
     public void setValue(String value) {

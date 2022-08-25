@@ -17,12 +17,18 @@ public class PositionType {
     public PositionType(String value) {
         this();
         this.value = value;
+
+        this.hashCode();
     }
 
     // TODO: Add a custom toString() method that returns the data stored in 'value'.
     @Override
-    public String toString(){
-        return value;
+    public String toString() {
+        if(value.length() > 0) {
+            return value;
+        } else{
+            return "Data not Available";
+        }
     }
 
     // TODO: Add custom equals and hashCode methods. Consider two PositionType objects "equal" when

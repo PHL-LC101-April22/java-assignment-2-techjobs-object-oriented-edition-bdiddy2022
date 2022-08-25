@@ -16,13 +16,19 @@ public class CoreCompetency {
     public CoreCompetency(String value) {
         this();
         this.value = value;
+
+        this.hashCode();
     }
 
     // Custom toString, equals, and hashCode methods:
 
     @Override
     public String toString() {
-        return value;
+        if(value.length() > 0) {
+            return value;
+        } else{
+            return "Data not Available";
+        }
     }
 
 

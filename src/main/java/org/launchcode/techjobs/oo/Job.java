@@ -2,6 +2,8 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+import static java.util.Objects.isNull;
+
 public class Job {
 
     private int id;
@@ -15,6 +17,7 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
+
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
@@ -26,11 +29,16 @@ public class Job {
     }
     public Job(String name,Employer employer,Location location,PositionType positionType,CoreCompetency coreCompetency) {
         this();
+
         this.name = name;
         this.employer = employer;
         this.location= location;
         this.positionType= positionType;
-        this.coreCompetency=coreCompetency;
+        this.coreCompetency= coreCompetency;
+
+        this.hashCode();
+
+
 
     }
 
@@ -94,5 +102,23 @@ public class Job {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+
+        String returnStatement = "\nID: "+this.getId()+"\nName: " + this.getName() +
+                "\nEmployer: " + this.getEmployer() +
+                "\nLocation: " + this.getLocation()+
+                "\nPosition Type: " + this.getPositionType()+
+                "\nCore Competency: " + this.getCoreCompetency() +
+                "\n";
+        String defaultAnswer = "Data not Available";
+
+        if(!isNull(id)&&name.length()==0&&employer.getValue().length()==0&&location.getValue().length()==0&&positionType.getValue().length()==0&&coreCompetency.getValue().length()==0){
+            return "OOPS! This job does not seem to exist.";
+        } else {
+            return returnStatement;
+        }
     }
 }
