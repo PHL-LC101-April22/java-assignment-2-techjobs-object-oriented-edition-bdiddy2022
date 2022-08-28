@@ -2,13 +2,10 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
-import static java.util.Objects.isNull;
-
 public class Job {
 
-    private int id;
+    public int id;
     private static int nextId = 1;
-
 
 
     private String name;
@@ -23,21 +20,18 @@ public class Job {
     //  the 'id' field.
 
     public Job() {
-        id = nextId;
+        this.id = nextId;
         nextId++;
-
     }
     public Job(String name,Employer employer,Location location,PositionType positionType,CoreCompetency coreCompetency) {
         this();
-
         this.name = name;
         this.employer = employer;
         this.location= location;
         this.positionType= positionType;
         this.coreCompetency= coreCompetency;
 
-        this.hashCode();
-
+        setId();
 
 
     }
@@ -45,12 +39,20 @@ public class Job {
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
+//    @Override
+//    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
+//        if (this == o) return true;
+//        if (!(o instanceof Job)) return false;
+//        Job job = (Job) o;
+//        return ((Job)o).getId() == job.getId();
+//    }
+
     @Override
-    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Job)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return getId() == job.getId();
+        return getId() == job.getId() && Objects.equals(getName(), job.getName()) && Objects.equals(getEmployer(), job.getEmployer()) && Objects.equals(getLocation(), job.getLocation()) && Objects.equals(getPositionType(), job.getPositionType()) && Objects.equals(getCoreCompetency(), job.getCoreCompetency());
     }
 
     @Override
@@ -72,8 +74,8 @@ public class Job {
         return employer;
     }
 
-    public void setEmployer(Employer employer) {
-        this.employer = employer;
+    public void setEmployer(Employer employer){
+        this.employer.value = employer.value;
     }
 
     public Location getLocation() {
@@ -81,7 +83,7 @@ public class Job {
     }
 
     public void setLocation(Location location) {
-        this.location = location;
+        this.location.value = location.value;
     }
 
     public PositionType getPositionType() {
@@ -89,7 +91,7 @@ public class Job {
     }
 
     public void setPositionType(PositionType positionType) {
-        this.positionType = positionType;
+        this.positionType.value = positionType.value;
     }
 
     public CoreCompetency getCoreCompetency() {
@@ -97,25 +99,30 @@ public class Job {
     }
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
-        this.coreCompetency = coreCompetency;
+        this.coreCompetency.value = coreCompetency.value;
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
+
+    public void setId(){
+        JobField.id = this.id;
+    }
+
 
     @Override
     public String toString() {
 
-        String returnStatement = "\nID: "+this.getId()+"\nName: " + this.getName() +
+        String returnStatement = "\nID: "+this.getId()+"\nName: " + this.name +
                 "\nEmployer: " + this.getEmployer() +
                 "\nLocation: " + this.getLocation()+
                 "\nPosition Type: " + this.getPositionType()+
-                "\nCore Competency: " + this.getCoreCompetency() +
+                "\nCore Competency: " + this.getCoreCompetency()+
                 "\n";
-        String defaultAnswer = "Data not Available";
+        String defaultAnswer = "Data not available";
 
-        if(!isNull(id)&&name.length()==0&&employer.getValue().length()==0&&location.getValue().length()==0&&positionType.getValue().length()==0&&coreCompetency.getValue().length()==0){
+        if(this.id==getId()&&name.length()==0&&employer.getValue().length()==0&&location.getValue().length()==0&&positionType.getValue().length()==0&&coreCompetency.getValue().length()==0){
             return "OOPS! This job does not seem to exist.";
         } else {
             return returnStatement;

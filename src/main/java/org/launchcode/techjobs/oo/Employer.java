@@ -1,62 +1,55 @@
 package org.launchcode.techjobs.oo;
 
-import java.util.Objects;
-
-public class Employer {
+public class Employer extends JobField {
 
     private int id;
-    private static int nextId = 1;
-    private String value;
+//    private static int nextId = 1;
+//    private String value;
 
-    public Employer() {
-        id = nextId;
-        nextId++;
-    }
+//    public Employer() {
+//        id = nextId;
+//        nextId++;
+//    }
 
     public Employer(String value) {
-        this();
-        this.value = value;
-
-
-        this.hashCode();
+        super(value);
+        this.id = getId();
     }
 
     // Custom toString, equals, and hashCode methods:
 
-    @Override
-    public String toString() {
-        if(value.length() > 0) {
-            return value;
-        } else{
-            return "Data not Available";
-        }
-    }
+//    @Override
+//    public String toString() {
+//        if(value.length() > 0) {
+//            return value;
+//        } else{
+//            return "Data not available";
+//        }
+//    }
 
-    @Override
-    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
-        if (this == o) return true;
-        if (!(o instanceof Employer)) return false;
-        Employer employer = (Employer) o;
-        return getId() == employer.getId();
-    }
+//    @Override
+//    public boolean equals(Object o) {  // Two objects are equal if they have the same id.
+//        if (this == o) return true;
+//        if (!(o instanceof Employer)) return false;
+//        Employer employer = (Employer) o;
+//        return ((Employer) o).getId() == employer.getId();
+//    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
+//    public void setValue(String value) {
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getId());
+//    }
+//
+//    // Getters and Setters:
+//
+//    public int getId() {
+//        return id;
+//    }
+//
 
-    // Getters and Setters:
-
-    public int getId() {
-        return id;
-    }
-
-    public String getValue() {
-        return value.toString();
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
+//        this.value = value;
+//    }
 
 }
